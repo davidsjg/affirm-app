@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useSearchParams } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams, useSearchParams } from "react-router-dom";
 import "./NotePage.css";
 import "@aws-amplify/ui-react/styles.css";
 import {
@@ -11,35 +12,42 @@ TextField,
 View,
 } from '@aws-amplify/ui-react';
 import { deleteNote, fetchNotes, set } from "./CRUD";
+import queryString from 'query-string';
+import { useLocation } from "react-router-dom";
 
 
 
 function NotePage(){
+    
     const [note, setNote] = useState();
-
-    const [searchParams, setSearchParams] = useSearchParams();
-    searchParams.get("noteId");
-
-    console.log(searchParams);
-
+    const [notes, setNotes] = useState();
+    const [searchParams] = useSearchParams();
+    const location = useLocation()
 
     useEffect(() => {
         const getNotes = fetchNotes();
-      
-        // getNotes.then((data) => {
-        //     data.map((i) => {
-        //         if(JSON.stringify(this.props.navigation.getParam('noteId', 'NO-ID'))){
-                    
-        //         }
-        //     })
-        //   setNote(data[0]);
-        // })
-        
+        const curUrl = location.pathname;
+        let result = curUrl.replace(/\/note\//i, "");
+
+        getNotes.then((data) => {
+            console.log(data);
+            setNotes(data);
+            const findNote = data.filter((note) => {
+                console.log(note);
+                //note.id == result;
+                setNote(note);
+            });
+        })
+
+        console.log(note);
     }, []);
 
     return (
+
+        <> 
+        {note && 
         <>
-        <Heading level={2}>Note</Heading>
+        <Heading level={2} textAlign={"center"}>Note</Heading>
             <View margin="3rem 0">
                 <Flex
                 key={note.id || note.name}
@@ -64,6 +72,9 @@ function NotePage(){
                 </Flex>
             </View>
         </>
+        }   
+    </>
+        
     )
 }
 

@@ -48,9 +48,7 @@ export async function createNote(event) {
   }
   
   export async function deleteNote({ id, name }, notes) {
-    console.log(id);
-    console.log(name);
-    console.log(notes);
+
     const newNotes = notes.filter((note) => note.id !== id);
     //setNotes(newNotes);
     await Storage.remove(name);

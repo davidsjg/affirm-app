@@ -41,10 +41,8 @@ const myTextFields = [
 
 useEffect(() => {
   const getNotes = fetchNotes();
-  console.log(getNotes);
 
   getNotes.then((data) => {
-    console.log(data);
     setNotes(data);
   })
   
@@ -54,36 +52,17 @@ async function createNote(event) {
   event.preventDefault();
   const newNote = await createNoteMutation(event);
 
-  console.log(newNote);
-
-  setNotes(notes, newNote);
-
   const getNotes = await fetchNotes();
 
   setNotes(getNotes);
-
-  console.log(notes);
-
-//   getNotes.then((data) => {
-//     console.log(data);
-//     setNotes(data);
-//     console.log(notes);
-//   })
 
   event.target.reset();
 }
 
 async function deleteNote(note) {
-  const newNotes = deleteNoteMutation(note, notes);
-  console.log(newNotes);
-  newNotes.then((data) => {
-    if(newNotes.length > 0){
-        setNotes(newNotes);
-    }
-    else{
-        setNotes([]);
-    }
-  })
+  const newNotes = await deleteNoteMutation(note, notes);
+  setNotes(newNotes);
+
 }
 
 return (
