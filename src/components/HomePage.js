@@ -52,12 +52,25 @@ useEffect(() => {
 
 async function createNote(event) {
   event.preventDefault();
-  createNoteMutation(event);
+  const newNote = await createNoteMutation(event);
 
-  fetchNotes().then((data) => {
-    setNotes(data);
-  });
-  //event.target.reset();
+  console.log(newNote);
+
+  setNotes(notes, newNote);
+
+  const getNotes = await fetchNotes();
+
+  setNotes(getNotes);
+
+  console.log(notes);
+
+//   getNotes.then((data) => {
+//     console.log(data);
+//     setNotes(data);
+//     console.log(notes);
+//   })
+
+  event.target.reset();
 }
 
 async function deleteNote(note) {

@@ -40,9 +40,11 @@ export async function createNote(event) {
     await API.graphql({
       query: createNoteMutation,
       variables: { input: data },
-    });
-    fetchNotes();
-    event.target.reset();
+    }).then((response) => {
+        console.log(response.data.createNote);
+        return response.data.createNote;
+    })
+    
   }
   
   export async function deleteNote({ id, name }, notes) {
