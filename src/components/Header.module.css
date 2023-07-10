@@ -1,0 +1,19 @@
+.mainContain{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 95px;
+    font-size: larger;
+    font: bold;
+    color: green;
+
+    background-image: url("https://images.freeimages.com/images/large-previews/abd/blurry-background-1638609.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.spanStyle {
+    color: darkgreen;
+    text-decoration: none;
+}
