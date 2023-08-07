@@ -40,11 +40,11 @@ const myTextFields = [
 ];
 
 useEffect(() => {
-  const getNotes = fetchNotes();
+  // const getNotes = fetchNotes();
 
-  getNotes.then((data) => {
-    setNotes(data);
-  })
+  // getNotes.then((data) => {
+  //   setNotes(data);
+  // })
   
 }, []);
 

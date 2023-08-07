@@ -1,0 +1,19 @@
+[
+    {
+        "name": "Strap Sandals",
+        "category": "Mens Shoes",
+        "price": 49.99,
+        "seasons": [
+            "Summer",
+            "Spring"
+        ]
+    },
+    {
+        "name": "Junco Purse",
+        "category": "Womens",
+        "price": 520.99,
+        "seasons": [
+            "Summer"
+        ]
+    }
+]
